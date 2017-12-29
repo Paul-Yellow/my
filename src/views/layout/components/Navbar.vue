@@ -6,7 +6,8 @@
     <!-- <breadcrumb class="breadcrumb-container"></breadcrumb> -->
     <div class="title-container clearfix">
       <div class="titleRow">
-          <img :src="titleUrl" alt="error">
+          <!-- <img :src="titleUrl" alt="error"> -->
+          中国反洗钱监测分析系统
       </div>
 
 
@@ -71,7 +72,7 @@
       </el-dropdown>
       |
       <!-- 退出 -->
-      <span  @click="logout"> <svg-icon icon-class="exit" /> 退出系统</span>
+      <span @click="logout" class="quitContainer"> <svg-icon icon-class="exit" /> <span class="quit">退出系统</span></span>
 
 
     </div>
@@ -89,7 +90,7 @@ import Hamburger from '@/components/Hamburger'
 import ThemePicker from '@/components/ThemePicker'
 import Screenfull from '@/components/Screenfull'
 import ErrorLog from '@/components/ErrorLog'
-import titleUrl from '@/assets/navbar/title.png'
+// import titleUrl from '@/assets/navbar/title.png'
 
 export default {
   components: {
@@ -102,7 +103,7 @@ export default {
   },
   data() {
     return {
-      titleUrl: titleUrl
+      // titleUrl: titleUrl
     }
   },
   computed: {
@@ -129,7 +130,7 @@ export default {
     logout() {
       this.$store.dispatch('LogOut').then(() => {
         location.reload()// 为了重新实例化vue-router对象 避免bug
-      })
+      }).catch()
     }
   }
 }
@@ -147,10 +148,13 @@ export default {
   line-height: 60px;
   border-radius: 0px !important;
   .hamburger-container {
-    line-height: 60px;
+    // line-height: 60px;
     height: 60px;
     float: left;
     padding: 0 10px;
+    .hamburger {
+      vertical-align: middle;
+    }
   }
   .form-container{
      display: inline-block;
@@ -160,6 +164,10 @@ export default {
        .el-input--small{
          font-size: inherit
        }
+       .el-input__inner{
+        border-radius: 14px;
+        font-size: 14px;
+        }
      }
 
   }
@@ -167,9 +175,12 @@ export default {
        float: left;
        .titleRow{
          height: 60px;
-         img{
-           vertical-align: middle
-         }
+         line-height: 60px;
+         font-size: 1.5em;
+         letter-spacing: 2px;
+        //  img{
+        //    vertical-align: middle
+        //  }
        }
 
   }
@@ -212,7 +223,7 @@ export default {
       vertical-align: 10px;
     }
     .avatar-container {
-       font-size: medium;
+      font-size: 16px;
       margin-right: 30px;
       .avatar-wrapper {
         cursor: pointer;
@@ -231,17 +242,17 @@ export default {
         }
       }
     }
+    .quitContainer{
+      cursor: pointer;
+      .quit{
+        font-size: 14px;
+        color: #606266
+      }
+    }
   }
 };
 
- .big-header{
-     .el-input__suffix{
-        font-size: 18px;
-      }
-    .el-input__inner{
-      border-radius: 14px;
-    }
-}
+
 </style>
 
 

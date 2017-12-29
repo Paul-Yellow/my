@@ -1,5 +1,5 @@
 <template>
-  <div class="app-container">
+  <div>
       <el-card>
           <div slot="header" class="clearfix">
             <span>人工补正要求管理</span>
@@ -71,13 +71,14 @@
               </template>
             </el-table-column>
 
-            <el-table-column label="操作">
+            <el-table-column label="操作" min-width="100">
                 <template slot-scope="scope">
                     <el-button type="text" size="small">补正要求通知下载</el-button>
                 </template>
             </el-table-column>
        </el-table>
-       <el-pagination background layout="prev, pager, next" :total="100"></el-pagination>
+       <el-pagination @size-change="handleSizeChange" @current-change="handleCurrentChange" :current-page="currentPage" :page-sizes="[100, 200, 300, 400]"
+          :page-size="100" layout="total, sizes, prev, pager, next, jumper" :total="400" background></el-pagination>
       </el-card>
   </div>
 </template>
@@ -88,6 +89,7 @@ import { getList } from '@/api/artificialCorrection'
 export default {
   data() {
     return {
+      currentPage: 1, // 分页当前页数
       list: null,
       listLoading: true,
       formInline: {
@@ -117,7 +119,8 @@ export default {
       }, {
         value: '已补正',
         label: '已补正'
-      }]
+      }],
+      value: ''
     }
   },
   created() {
@@ -130,7 +133,18 @@ export default {
         this.list = response.data.projects
         this.listLoading = false
       })
+    },
+    handleSizeChange(val) {
+      console.log(`每页 ${val} 条`)
+    },
+    handleCurrentChange(val) {
+      console.log(`当前页: ${val}`)
     }
   }
 }
 </script>
+<style lang="scss" scoped>
+.btn-row {
+  text-align: right;
+}
+</style>

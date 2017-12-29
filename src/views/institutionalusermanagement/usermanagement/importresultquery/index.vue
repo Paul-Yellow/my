@@ -3,6 +3,13 @@
 
     <el-form :inline="true">
       <el-card>
+                <div slot="header" class="clearfix User-title">
+          <span>
+            机构网点导入结果查询
+          </span> 
+       
+    
+      </div>
         <el-row>
           <el-col :span="24">
             <el-form-item label="导入日期 ：">
@@ -21,7 +28,7 @@
         </el-row> 
 
         <div>
-          <el-table :data="tableData" border >
+          <el-table :data="tableData"  >
             <el-table-column  prop="number" label="序号" ></el-table-column>
             <el-table-column  prop="file" label="导入文件名" ></el-table-column>
             <el-table-column  prop="version" label="版本号" ></el-table-column>
@@ -30,16 +37,20 @@
             <el-table-column  prop="handleTime" label="操作时间" ></el-table-column>
             <el-table-column  prop="handle" label="操作" >
               <template slot-scope="scope">
-                <el-button  type="text" size="small">导入详情</el-button>
+               <router-link to="resultDetail"> <el-button  type="text" size="small"> 导入详情</el-button></router-link> 
               </template>
             </el-table-column>
           
           </el-table>
+             <div class="User-pagination">
+           <el-pagination @size-change="handleSizeChange" @current-change="handleCurrentChange" :current-page="currentPage" :page-sizes="[100, 200, 300, 400]"
+          :page-size="100" layout="total, sizes, prev, pager, next, jumper" :total="400" background></el-pagination>
+        </div>
           
         </div>    
         <div class="bottomBtn">
-          <el-button type="primary" icon="el-icon-back">返回</el-button>
-        
+          <router-link to="usermanagement">
+            <el-button type="primary">返回</el-button></router-link>
         </div>   
       </el-card>  
 
@@ -68,19 +79,29 @@ export default {
   data() {
     return {
       tableData: tableData,
-      value1: ''
+      value1: '',
+      currentPage: 1,
+      currentPage3: 1
     }
   },
   created() {
     console.log(this.tableData)
+  },
+  methods: {
+    // 分页
+    handleSizeChange(val) {
+      console.log(`每页 ${val} 条`)
+    },
+    handleCurrentChange(val) {
+      console.log(`当前页: ${val}`)
+    }
   }
 }
 </script>
 
 <style scoped lang="scss">
 .ImportResultQuery{
-  padding: 24px;
-  background-color:  #f0f2f5;
+
   .bottomBtn{
   text-align: center;
   padding:40px 0 20px 0;

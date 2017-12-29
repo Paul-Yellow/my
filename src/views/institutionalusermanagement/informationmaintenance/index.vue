@@ -1,16 +1,20 @@
 <template>
     <div class="InformationMaintenance">
         <div class="contanier">
-            <el-row >
-                <el-col :span="24">
-                    <el-card class="box-card">
-                        <div slot="header" class="clearfix title">
-                            <span>报告机构基本信息</span> 
-                        </div>
+            <el-card>
+                <div slot="header" class="clearfix title">
+                    <span>报告机构信息维护</span> 
+                </div>
+                <div class="In-basicLink">
+                    <el-row>
+                      <el-col :span="16" class="contentTitle">报告机构基本信息</el-col>
+                    </el-row>   
+                      <el-row>
+                      <el-col :span="24">
                         <div class="content">
-                            <el-form  label-width="120px" :model="formLabelAlign">
+                            <el-form   :model="formLabelAlign">
                                 <el-row>
-                                    <el-col :span="6">
+                                    <el-col :span="8">
                                         <div>
                                             <el-form-item label="名称：">
                                                 <span>C000001</span>
@@ -22,7 +26,7 @@
                                             </el-form-item>
                                         </div>                                       
                                     </el-col>
-                                        <el-col :span="6">
+                                        <el-col :span="8">
                                         <div>
                                             <el-form-item label="报告机构名称：">
                                                 <span>C000001</span>
@@ -36,7 +40,7 @@
                                     </el-col>
                                     <el-col :span="8">
                                         <div >
-                                            <el-form-item label="备注：" label-width="60px">
+                                            <el-form-item label="备注：" class="specialIterm" >
                                                 <el-input type="textarea" v-model="formLabelAlign.desc"></el-input>
                                             </el-form-item>                                       
                                         </div>
@@ -44,19 +48,19 @@
                                     </el-row>
                         
                             </el-form>
-                            
+                        </div>
+                      </el-col>
+                    </el-row>
 
-                        </div>
-                        
-                    </el-card>
-                </el-col>
-            </el-row>            
-            <el-row class="In-link">
-                <el-col :span="24">
-                    <el-card class="box-card linkBox">
-                        <div slot="header" class="clearfix title">
-                            <span>反洗钱工作部门联系信息</span> 
-                        </div>
+                </div>
+<!-- 分割线 -->
+               <div class="el-divider el-divider-horizontal" ></div>
+                <div class="In-detailLink">
+                    <el-row>
+                      <el-col :span="24" class="contentTitle">反洗钱工作部门联系信息</el-col>
+                    </el-row> 
+                    <el-row>
+                      <el-col :span="24">
                         <div class="content">
                             <el-form :label-position="labelPosition" label-width="120px" :model="formLabelAlign">
                                 <el-row :gutter=20>
@@ -68,6 +72,22 @@
                                         </div>
                                                                             
                                     </el-col>
+                                         <el-col :span="8">
+                                        <div class="In-block">
+                                            <el-form-item label="邮编：" label-width="60px">
+                                                 <el-input placeholder="请输入"></el-input>
+                                            </el-form-item>                                       
+                                        </div>
+                                    </el-col>
+                                     <el-col :span="8">
+                                        <div class="In-block">
+                                            <el-form-item label="传真：" label-width="60px">
+                                                 <el-input placeholder="请输入"></el-input>
+                                            </el-form-item>                                       
+                                        </div>
+                                    </el-col>
+                                </el-row>
+                                <el-row :gutter=20>
                                     <el-col :span="8">
                                         <div class="In-block">
                                             <el-form-item label="负责人姓名：">
@@ -75,15 +95,6 @@
                                             </el-form-item>
                                         </div>
                                     </el-col>
-                                    <el-col :span="8">
-                                        <div class="In-block">
-                                            <el-form-item label="联系人姓名：" label-width="60px">
-                                                 <el-input placeholder="请输入"></el-input>
-                                            </el-form-item>                                       
-                                        </div>
-                                    </el-col>
-                                </el-row>
-                                <el-row :gutter=20>
                                     <el-col :span="8">
                                         <div class="In-block">
                                             <el-form-item label="办公电话：">
@@ -99,14 +110,33 @@
                                             </el-form-item>
                                         </div>
                                     </el-col>
+                                   
+                                </el-row>
+                                <el-row :gutter=20>
                                     <el-col :span="8">
                                         <div class="In-block">
-                                            <el-form-item label="传真：" label-width="60px">
-                                                 <el-input placeholder="请输入"></el-input>
-                                            </el-form-item>                                       
+                                            <el-form-item label="联系人姓名 ：">
+                                                <el-input placeholder="请输入"></el-input>
+                                            </el-form-item>
                                         </div>
                                     </el-col>
-                                </el-row>
+                                    <el-col :span="8">
+                                        <div class="In-block">
+                                            <el-form-item label="办公电话：">
+                                                <el-input placeholder="请输入"></el-input>
+                                            </el-form-item>
+                                        </div>
+                                                                            
+                                    </el-col>
+                                    <el-col :span="8">
+                                        <div class="In-block">
+                                            <el-form-item label="移动电话：">
+                                                <el-input placeholder="请输入"></el-input>
+                                            </el-form-item>
+                                        </div>
+                                    </el-col>
+                                   
+                                </el-row>                                                           
                                 <el-row :gutter="20">
                                     <el-col :span="8">
                                         <div class="In-block">
@@ -129,37 +159,32 @@
                                             </el-form-item>
                                         </div>
                                     </el-col>
-                                    <el-col :span="8">
-                                        <div class="In-block">
-                                            <el-form-item label="邮编：" label-width="60px">
-                                                 <el-input placeholder="请输入"></el-input>
-                                            </el-form-item>                                       
-                                        </div>
-                                    </el-col>
+                                   
                                 </el-row>
 
-                            <div class="In-botomBtn">
-                                <el-row>
-                                    <el-col>
-                                        <el-button type="primary">提交</el-button>
-                                         <el-button >取消</el-button>
-                                    </el-col>
-                                </el-row>                                
-                            </div>
+                      
                                                              
                        
                             </el-form>
                             
 
-                        </div>
-                        
-                    </el-card>
-                </el-col>
-            </el-row>
-        </div>
+                        </div>                       
 
-       
-    
+
+                      </el-col>
+                    </el-row> 
+
+                </div>
+                <div class="In-botomBtn">
+                    <el-row>
+                        <el-col>
+                            <el-button type="primary" >提交</el-button>
+                                <el-button >取消</el-button>
+                        </el-col>
+                    </el-row>                                
+                </div>
+            </el-card>
+        </div>
     </div>
 </template>
 
@@ -215,56 +240,87 @@
 
 <style scope lang="scss" >
 .InformationMaintenance{
- padding:24px;
- background-color:  #f0f2f5;
-.text {
-    font-size: 14px;
-}
+    .title{
+        font-size: 18px;
+    }
 
-.item {
-    margin-bottom: 18px;
-  }
-
-.clearfix:before,
-.clearfix:after {
-    display: table;
-    content: "";
-  }
-.clearfix:after {
-    clear: both
-  }
-.contanier{
-
-
-.box-card{
-    border-radius: 0
-}
-.el-form-item{
-    margin-bottom: 0
-}
-.In-link{
-    padding-top: 24px;
-    .linkBox{
-        margin-top: 0
+    .el-divider{
+    margin-top: 20px;   
+    margin-bottom: 32px;
+    height: 1px;
+    width: 100%;
+    background: #e8e8e8;
+    }
+    .contentTitle{
+        margin-bottom: 16px;
+        padding-top: 16px;
+        font-size: 16px;
+        color: rgba(0, 0, 0, 1);
+        font-weight: 500;
+    }
+    .In-botomBtn{
+        padding: 20px 0;
+        text-align: center;
     }
     .el-form-item__label{
-        padding-bottom: 0;
-        line-height: 30px;
+        padding: 0 ;
     }
     .In-city{
-        width: 100%;
-       
+        width: 100%
     }
-     .In-block{
-            margin-bottom: 20px;
-        }
-}
-.In-botomBtn{
-    text-align: center;
-    padding: 40px 0 20px 0;
-}
+     .In-basicLink{
+         .el-form-item{
+            margin-bottom: 0;
+            .el-form-item__content{
+                margin-left: 0;
+                .el-textarea{
+                    width: 80%
+                }
+             
+            }
+           
+            
+         }
+     }
 
-}   
+
+    @media screen and(min-width:1400px) {
+   .In-detailLink{
+        .el-form-item__label{
+           width: 30%;
+           text-align: right;
+           display: inline-block
+       }
+       .el-form-item__content{
+           width: 70%;
+            display: inline-block
+       }
+   }
+       
+       .In-basicLink{
+           .el-col-8{
+               width: 24%
+           }
+           .el-form-item__label{
+     
+           text-align: right;
+ 
+          }
+       .specialIterm {
+            .el-form-item__content{
+            width:80%;
+            display: inline-block;
+            
+            }
+       .el-textarea{
+            width: 100%
+            }
+        }
+     }
+
+        }
+    
+    
 
 }
 

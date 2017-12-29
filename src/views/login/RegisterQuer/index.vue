@@ -26,7 +26,7 @@
                                     <el-form-item label='' class='form-item-captcha' prop='captcha'>
                                         <el-input name='captcha'  v-model='querForm.captcha' class='form-input' placeholder='验证码'></el-input>
                                     </el-form-item>
-                                    <img class='login_cacaptcha' src='.././login-captcha.jpg'/>
+                                    <img class='login_cacaptcha' src='../../../assets/login/login-captcha.jpg'/>
                                 </el-col>
                                 <el-col :span='4' class='tip-col'>
                                     <div style='margin-top:0.2em'>点击图片可</div>
@@ -98,14 +98,14 @@ export default {
 
 <style rel='stylesheet/scss' lang='scss'>
 .registerQuer-style {
-  background: url(".././login-bg.jpg");
+  background: url("../../../assets/login/login-bg.jpg");
   background-size: 100% 100%;
   height: 100vh;
   min-height:45vw;
   font-size: 1vw;
 
   .login-bg-left {
-    background: url(".././login-bg-left.jpg");
+    background: url("../../../assets/login/login-bg-left.jpg");
     background-size: 100% 100%;
   }
 
@@ -144,7 +144,6 @@ export default {
 
   .form-input {
     height: 100%;
-    font-size: 0.9em;
   }
 
   .tip-col {
@@ -170,7 +169,7 @@ export default {
     background: rgb(53, 117, 223);
     border-color: rgb(53, 117, 223);
     color: #fff;
-    font-size: 1.1em;
+    font-size: 1.2em;
     box-shadow: 0em 0.1em 0.35em rgb(53, 117, 223);
   }
 
@@ -179,7 +178,7 @@ export default {
     background: rgb(223, 125, 54);
     border-color: rgb(223, 125, 54);
     color: #fff;
-    font-size: 1.1em;
+    font-size: 1.2em;
     box-shadow: 0em 0.1em 0.35em rgb(223, 125, 54);
   }
 
@@ -199,17 +198,11 @@ export default {
   .el-button {
     padding: 0.25em 0.75em;
   }
-  .el-dialog__body {
-    font-size: 0.5em;
-  }
   .el-dialog--center .el-dialog__body {
     padding: 1.25em 1.35em 1.5em;
   }
   .el-dialog--center .el-dialog__header {
     padding-top: 1.5em;
-  }
-  .el-dialog__header {
-    padding: 0.75em 0.75em 0.5em;
   }
   .el-form-item {
     height: 2.6em;
@@ -222,6 +215,9 @@ export default {
   }
   .el-input__inner {
     height: 100%;
+  }
+  .el-input--small {
+    font-size: 1.8em;
   }
 }
 </style>

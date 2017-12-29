@@ -1,9 +1,9 @@
 <template>
   <div>
       <el-card>
-          <!-- <div slot="header" class="clearfix">
-            <span>文件公函</span>
-          </div> -->
+          <div slot="header" class="clearfix">
+            <span>自定义可疑交易特征导入文件结果查询</span>
+          </div>
           <el-form :inline="true" :model="form">
             <el-row>
                 <el-col :span="12">
@@ -20,28 +20,29 @@
                 <el-col :span="5">
                     <el-form-item>
                      <el-button type="primary">查询</el-button>
-                     <router-link to="customSuspiciousTrade"><el-button>返回</el-button></router-link>
                     </el-form-item>
                 </el-col>
                 
             </el-row>
-          </el-form> 
-      </el-card>
-      <el-card class="tablewrap">
-        <el-table :data="tableData" style="width: 100%" size='mini'>
+          </el-form>
+          <el-table :data="tableData" style="width: 100%">
             <el-table-column prop="key" label="序号"></el-table-column>
             <el-table-column prop="name" label="导入文件名"></el-table-column>
             <el-table-column prop="version" label="版本号"></el-table-column>
             <el-table-column prop="date" label="生效日期"></el-table-column>
             <el-table-column prop="result" label="导入结果" width="300"></el-table-column>
             <el-table-column prop="handeldate" label="操作时间"></el-table-column>
-            <el-table-column label="操作">
+            <el-table-column label="操作" width="80">
                 <template slot-scope="scope">
                     <router-link to="importDetail"><el-button type="text">导入详情</el-button></router-link>
                 </template>
             </el-table-column>
-       </el-table>
-        <el-pagination background layout="prev, pager, next" :total="100"></el-pagination>
+        </el-table>
+         <el-pagination @size-change="handleSizeChange" @current-change="handleCurrentChange" :current-page="currentPage" :page-sizes="[100, 200, 300, 400]"
+          :page-size="100" layout="total, sizes, prev, pager, next, jumper" :total="400" background></el-pagination>
+        <div class="btn-row">
+            <router-link to="customSuspiciousTrade"><el-button type="primary"><i class="el-icon-back"></i> 返回</el-button></router-link>
+        </div>
       </el-card>
   </div>
 </template>
@@ -50,6 +51,7 @@
 export default {
   data() {
     return {
+      currentPage: 1, // 分页当前页数
       value: '',
       form: {
         name: ''
@@ -83,9 +85,6 @@ export default {
 
 <style rel="stylesheet/scss" lang="scss" scoped>
     .btn-row {
-        text-align: right;
-    }
-    .tablewrap {
-        margin-top: 20px;
+        text-align: center;
     }
 </style>

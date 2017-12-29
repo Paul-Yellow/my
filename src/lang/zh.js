@@ -44,7 +44,7 @@ export default {
     theme: '换肤',
     clipboardDemo: 'clipboard',
     i18n: '国际化',
-    artificialCorrection: '数据补正',
+    artificialCorrection: '人工补正通知',
     businessManage: '业务管理',
     submitProfile: '报送概要',
     fileOfficial: '文件公函',
@@ -54,7 +54,7 @@ export default {
     announcement: '通知公告',
     announcementDetail: '通知报告详情',
     zeroReportConfirmation: '零报告确认',
-    customSuspiciousTrade: '自定义可疑交易特征信息',
+    customSuspiciousTrade: '自定义可疑交易特征',
     customSuspiciousTradeDtetail: '自定义可疑交易特征详情',
     bulkImport: '批量导入',
     importQuery: '导入查询结果',
@@ -64,7 +64,8 @@ export default {
     systemManage: '系统管理',
     systemUpdateLog: '系统更新日志',
     systemUpdateLogDetail: '系统更新日志详情',
-    onlineFillManage: '在线填报',
+    // onlineFillManage: '在线填报',
+    onlineFill: '在线填报',
     fillCheck: '查看',
     fillWays: '选择填报方式',
     dataSubmit: '数据报送',
@@ -83,6 +84,10 @@ export default {
     UserQuit: '报告机构退出申请',
     UserManagement: '机构网点管理',
     AgencyImport: '机构网点导入',
-    ImportResultQuery: '机构网点导入结果查询'
+    ImportResultQuery: '机构网点导入结果查询',
+    newBigDeals: '大额新增',
+    BranchDetail: '机构网点导入查看详情',
+    ResultDetail: '机构网点文件导入详情',
+    CenterSubmitProfile: '中心端报送概要'
   }
 }

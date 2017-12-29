@@ -59,7 +59,7 @@
                         <el-row style='margin-top:1.5em'>
                             <fieldset class='fieldset-style'>
                                 <legend class='fieldset-label-style'>相关附件：</legend>
-                                    <el-row>
+                                    <el-row style='margin-top:0.5em'>
                                         <el-col :span='17'>
                                             <el-form-item label='' prop='file'>
                                                 <span class='form-label'>请选择重置密码申请函扫描件：</span>
@@ -82,7 +82,7 @@
         </el-col>
       <el-dialog :visible.sync='centerDialogVisible' width='26em' center>
         <el-row style='text-align:center'>
-            <img src='./modal-ico.png' />
+            <img src='../../../assets/login/modal-ico.png' />
         </el-row>
         <el-row style='text-align:center'>
             <span style='fontSize:0.9em'>密码重置申请提交成功！</span>
@@ -142,14 +142,14 @@ export default {
 
 <style rel='stylesheet/scss' lang='scss'>
 .resetPassword-bg {
-  background: url('.././login-bg.jpg');
+  background: url('../../../assets/login/login-bg.jpg');
   background-size: 100% 100%;
   height: 100vh;
   min-height:45vw;
-  font-size: 1vw;
+  font-size: 1vw !important;
 
   .resetPassword-bg-left {
-    background: url('.././login-bg-left.jpg');
+    background: url('../../../assets/login/login-bg-left.jpg');
     background-size: 100% 100%;
   }
 
@@ -224,7 +224,7 @@ export default {
     color: #fff;
     font-size: 0.9em;
     box-shadow: 0em 0.1em 0.25em rgb(53, 117, 223);
-    height: 1.6em;
+    height: 2em;
   }
 
   .form-input {
@@ -232,7 +232,7 @@ export default {
     font-size: 0.8em;
   }
   .form-label {
-    font-size: 0.8em;
+    // font-size: 0.8em;
     color: #6e6e6e;
   }
 
@@ -248,14 +248,12 @@ export default {
     border-color: rgb(51, 190, 192);
     color: #fff;
     font-size: 0.8em;
+    height: 2.5em;
     box-shadow: 0em 0.1em 0.25em rgb(51, 190, 192);
   }
 
   .el-button {
     padding: 0.25em 0.75em;
-  }
-  .el-dialog__body {
-    font-size: 0.5em;
   }
   .el-dialog--center .el-dialog__body {
     padding: 1.25em 1.35em 1.5em;
@@ -279,8 +277,12 @@ export default {
     height: 100%;
   }
 
-  .el-textarea__inner {
-    height: 2em;
+  // .el-textarea__inner {
+  //   height: 2em;
+  // }
+
+  .el-form-item__content {
+    font-size: 0.8em;
   }
 }
 </style>

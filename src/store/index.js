@@ -5,6 +5,7 @@ import errorLog from './modules/errorLog'
 import permission from './modules/permission'
 import user from './modules/user'
 import getters from './getters'
+import dataSubmitStore from './modules/dataSubmitStore'
 
 Vue.use(Vuex)
 
@@ -13,7 +14,8 @@ const store = new Vuex.Store({
     app,
     errorLog,
     permission,
-    user
+    user,
+    dataSubmitStore
   },
   getters
 })

@@ -1,6 +1,6 @@
 <template>
   <div class="app-footer">
-    中国反洗钱监测分析中心 Coptright ©️ 2017
+    中国反洗钱监测分析中心 Copyright ©️ 2017
   </div>
 </template>
 

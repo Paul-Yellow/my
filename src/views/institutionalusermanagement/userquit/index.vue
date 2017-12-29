@@ -35,7 +35,7 @@
                                 <el-row>
                                     <el-col>
                                         <el-button type="primary">提交</el-button>
-                                         <el-button >取消</el-button>
+                                        
                                     </el-col>
                                 </el-row>                                
                             </div>        
@@ -65,8 +65,7 @@ export default {
 
 <style  lang="scss">
 .UserQuit{
-  padding: 24px;
-  background-color:  #f0f2f5;
+
   .uploadContainer {
       width: 100%;
       .el-upload {

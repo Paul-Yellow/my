@@ -74,7 +74,7 @@ export default {
         xAxis: [
           {
             type: 'category',
-            data: ['周一', '周二', '周三', '周四', '周五', '周六', '周日'],
+            data: ['周一', '周二', '周三', '周四', '周五'],
             axisTick: {
               alignWithLabel: true
             }
@@ -91,10 +91,18 @@ export default {
         ],
         series: [
           {
-            name: '直接访问',
+            name: '当天数据',
             type: 'bar',
             barWidth: '60%',
-            data: [200, 250, 500, 750, 500, 1000, 200]
+            itemStyle: {
+              normal: {
+                label: {
+                  show: true,
+                  position: 'top' // 数据显示
+                }
+              }
+            },
+            data: [200, 250, 500, 750, 500]
           }
         ]
       })

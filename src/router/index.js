@@ -42,7 +42,7 @@ export const constantRouterMap = [
     children: [{
       path: 'dashboard',
       component: _import('dashboard/index'),
-      meta: { title: 'dashboard', icon: 'example' }
+      meta: { title: 'dashboard', icon: 'home' }
     }]
   }
 ]
@@ -73,7 +73,7 @@ export const asyncRouterMap = [
         role: ['admin']
       }
     }]
-  },
+  },*/
 
   {
     path: '/example',
@@ -99,7 +99,7 @@ export const asyncRouterMap = [
         ]
       }
     ]
-  },*/
+  },
   {
     path: '/icon',
     component: Layout,
@@ -110,21 +110,21 @@ export const asyncRouterMap = [
       meta: { title: 'icons', icon: 'icon', noCache: true }
     }]
   },
-  {
-    path: '/error',
-    component: Layout,
-    redirect: 'noredirect',
-    name: 'errorPages',
-    hidden: true,
-    meta: {
-      title: 'errorPages',
-      icon: '404'
-    },
-    children: [
-      { path: '401', component: _import('errorPage/401'), name: 'page401', hidden: true, meta: { title: 'page401', noCache: true }},
-      { path: '404', component: _import('errorPage/404'), name: 'page404', hidden: true, meta: { title: 'page404', noCache: true }}
-    ]
-  },
+  // {
+  //   path: '/error',
+  //   component: Layout,
+  //   redirect: 'noredirect',
+  //   name: 'errorPages',
+  //   hidden: true,
+  //   meta: {
+  //     title: 'errorPages',
+  //     icon: '404'
+  //   },
+  //   children: [
+  //     { path: '401', component: _import('errorPage/401'), name: 'page401', hidden: true, meta: { title: 'page401', noCache: true }},
+  //     { path: '404', component: _import('errorPage/404'), name: 'page404', hidden: true, meta: { title: 'page404', noCache: true }}
+  //   ]
+  // },
 
   {
     path: '/error-log',
@@ -133,24 +133,37 @@ export const asyncRouterMap = [
     hidden: true,
     children: [{ path: 'log', component: _import('errorLog/index'), name: 'errorLog', meta: { title: 'errorLog', icon: 'bug' }}]
   },
-  {
-    path: '/i18n',
-    component: Layout,
-    hidden: true,
-    children: [{ path: 'index', component: _import('i18n-demo/index'), name: 'i18n', meta: { title: 'i18n', icon: 'international' }}]
-  },
+  // {
+  //   path: '/i18n',
+  //   component: Layout,
+  //   hidden: true,
+  //   children: [{ path: 'index', component: _import('i18n-demo/index'), name: 'i18n', meta: { title: 'i18n', icon: 'international' }}]
+  // },
   {
     path: '/dataSubmit',
     component: Layout,
-    redirect: 'dataSubmit/onlineFill/onlineFillManage',
+    redirect: 'dataSubmit/onlineFill/onlineFill',
     name: '/dataSubmit',
-    meta: { title: 'dataSubmit', icon: 'example' },
+    meta: { title: 'dataSubmit', icon: 'datasubmit' },
     children: [
+      // {
+      //   path: 'onlineFillManage', // 在线填报-在线填报管理
+      //   name: 'onlineFillManage',
+      //   component: _import('dataSubmit/onlineFill/onlineFillManage'),
+      //   meta: { title: 'onlineFillManage', icon: 'form' }
+      // },
       {
-        path: 'onlineFillManage', // 在线填报-在线填报管理
-        name: 'onlineFillManage',
-        component: _import('dataSubmit/onlineFill/onlineFillManage'),
-        meta: { title: 'onlineFillManage' }
+        path: 'onlineFill', // 在线填报-在线填报
+        name: 'onlineFill',
+        component: _import('dataSubmit/onlineFill/onlineFill'),
+        meta: { title: 'onlineFill' }
+      },
+      {
+        path: 'newBigDeals', // 新增大额
+        name: 'newBigDeals',
+        component: _import('dataSubmit/onlineFill/newBigDeals'),
+        meta: { title: 'onlineFill' },
+        hidden: true
       },
       {
         path: 'fillWays', // 在线填报-在线填报管理-选择填报方式
@@ -246,7 +259,7 @@ export const asyncRouterMap = [
     component: Layout,
     name: 'businessManage',
     redirect: 'submitProfile',
-    meta: { title: 'businessManage', icon: 'form' },
+    meta: { title: 'businessManage', icon: 'businessmanage' },
     children: [
       {
         path: 'submitProfile', // 报送概要
@@ -362,7 +375,16 @@ export const asyncRouterMap = [
         component: _import('businessManage/customSuspiciousTrade/importDetail'),
         meta: { title: 'importDetail' },
         hidden: true
+      },
+      // 中心端
+      {
+        path: 'centersubmitprofile', // 自定义可疑交易（导入详情）
+        name: 'CenterSubmitProfile',
+        component: _import('businessManage/centersubmitprofile'),
+        meta: { title: 'CenterSubmitProfile' },
+        hidden: true
       }
+
     ]
   },
 
@@ -371,7 +393,7 @@ export const asyncRouterMap = [
     component: Layout,
     redirect: '/institutionalusermanagement/informationmaintenance',
     name: 'InstitutionalUserManagement',
-    meta: { title: 'InstitutionalUserManagement', icon: 'example' },
+    meta: { title: 'InstitutionalUserManagement', icon: 'usermanage' },
     children: [
       {
         path: 'informationmaintenance',
@@ -410,6 +432,20 @@ export const asyncRouterMap = [
         hidden: true,
         component: _import('institutionalusermanagement/usermanagement/importresultquery/index'),
         meta: { title: 'ImportResultQuery' }
+      },
+      {
+        path: 'branchdetail',
+        name: 'BranchDetail',
+        hidden: true,
+        component: _import('institutionalusermanagement/usermanagement/importresultquery/branchdetail'),
+        meta: { title: 'BranchDetail' }
+      },
+      {
+        path: 'resultDetail',
+        name: 'ResultDetail',
+        hidden: true,
+        component: _import('institutionalusermanagement/usermanagement/importresultquery/resultDetail'),
+        meta: { title: 'ResultDetail' }
       }
     ]
   },
@@ -419,7 +455,7 @@ export const asyncRouterMap = [
     component: Layout,
     name: 'codeManagement',
     redirect: 'codeDownload',
-    meta: { title: 'codeManagement', icon: 'example' },
+    meta: { title: 'codeManagement', icon: 'codemanage' },
     children: [
       {
         path: 'codeDownload',
@@ -442,7 +478,7 @@ export const asyncRouterMap = [
     component: Layout,
     redirect: '/systemManage/systemUpdateLog',
     name: 'systemManage',
-    meta: { title: 'systemManage', icon: 'example' },
+    meta: { title: 'systemManage', icon: 'systemmanage' },
     children: [
       {
         path: 'systemUpdateLog',
@@ -458,6 +494,30 @@ export const asyncRouterMap = [
         hidden: true
       }
     ]
+  },
+
+  { // 详情页面
+    path: '/detail',
+    component: Layout,
+    hidden: true,
+    children: [{
+      path: 'index/:id',
+      component: _import('detail/index'),
+      name: 'detail',
+      meta: { title: 'detail' }
+    }]
+  },
+
+  { // 列表页面
+    path: '/list',
+    component: Layout,
+    hidden: true,
+    children: [{
+      path: 'index/:id',
+      component: _import('list/index'),
+      name: 'list',
+      meta: { title: 'list' }
+    }]
   },
 
   // 保证在最后

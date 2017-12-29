@@ -1,23 +1,21 @@
 <template>
       <el-card>
-        <!-- <div class="card-wrap"> -->
-            <!-- <el-card class="replywrap"> -->
-              <div class="replytitle">系统更新日志详情:</div>
-              <el-form label-width="120px">
-                <el-form-item label="版本号：">
-                  <span>v1.0</span>
-                </el-form-item>
-                <el-form-item label="上线部署日期：">
-                  <span>2017-10-31</span>
-                </el-form-item>
-                <el-form-item label="更新内容：">
-                  <el-input type="textarea"></el-input>
-                </el-form-item>
-              </el-form>
-            <!-- </el-card> -->
-        <!-- </div> -->
+          <div slot="header" class="clearfix">
+            <span>系统更新日志详情</span>
+          </div>
+          <el-form label-width="120px">
+            <el-form-item label="版本号：">
+              <span>v1.0</span>
+            </el-form-item>
+            <el-form-item label="上线部署日期：">
+              <span>2017-10-31</span>
+            </el-form-item>
+            <el-form-item label="更新内容：">
+              <el-input type="textarea"></el-input>
+            </el-form-item>
+          </el-form>
         <div class="btn">
-          <router-link to="systemUpdateLog"><el-button type="primary">返回</el-button></router-link>
+          <router-link to="systemUpdateLog"><el-button type="primary"><i class="el-icon-back"></i> 返回</el-button></router-link>
         </div>
       </el-card>
 </template>
@@ -32,9 +30,6 @@ export default {
 </script>
 
 <style rel="stylesheet/scss" lang="scss" scoped>
-  .replytitle {
-    margin-bottom: 20px;
-  }
   .card-wrap h3 {
     text-align: center;
   }

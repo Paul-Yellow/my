@@ -6,7 +6,7 @@
         <!-- 大额交易新增 -->
     <el-card class="box-card" v-if="firstBoxType == 'addBig'">
       <div slot="header" class="clearfix">
-        <span style="font-weight:600;">报告基本信息概览</span>
+        <span >报告基本信息概览</span>
       </div>
       <el-form ref="form" :model="sizeForm1"   :label-position="labelPosition" label-width="135px" >
         <!-- 第一行 -->
@@ -32,7 +32,7 @@
         <!-- 可疑交易新增/修改 -->
     <el-card class="box-card" v-if="firstBoxType == 'suspicious'">
       <div slot="header" class="clearfix">
-        <span style="font-weight:600;">报告基本信息概览</span>
+        <span>报告基本信息概览</span>
       </div>
       <el-form ref="form" :model="sizeForm2"  :label-position="labelPosition" label-width="160px">
         <!-- 第一行 -->
@@ -71,7 +71,7 @@
     <!-- 大额交易修改 -->
     <el-card class="box-card" v-if="firstBoxType == 'modify'">
       <div slot="header" class="clearfix">
-        <span style="font-weight:600;">报告基本信息概览</span>
+        <span >报告基本信息概览</span>
       </div>
       <el-form ref="form" :model="sizeForm3"  size="mini" :label-position="labelPosition" label-width="135px">
         <!-- 第一行 -->
@@ -97,7 +97,7 @@
     <!-- 大额交易删除 -->
     <el-card class="box-card" v-if="firstBoxType == 'delete'">
       <div slot="header" class="clearfix">
-        <span style="font-weight:600;">报告基本信息概览</span>
+        <span >报告基本信息概览</span>
       </div>
       <el-form ref="form" :model="sizeForm4"  size="mini" :label-position="labelPosition" label-width="135px">
         <!-- 第一行 -->
@@ -121,7 +121,7 @@
     <!-- 第二大块开始 -->
     <el-card class="box-card" style="margin-top:20px">
       <div slot="header" class="clearfix">
-        <span  style="font-weight:600">报文信息</span>
+        <span  >报文信息</span>
       </div>
       <div class="detailBox">
         <p>&lt;?xml version="1.0" encoding="utf‐8"?&gt;</p>
@@ -148,47 +148,55 @@
         <p>&lt;AOSP&gt;疑点分析&lt;/AOSP&gt;</p>
         <p>&lt;TOSC&gt;疑似涉罪类型 1&lt;/TOSC&gt;</p>
       </div>
-    </el-card>
-    <!-- 第二大块结束   -->
+      <!-- 第二大块结束   -->
 
-    <!-- 第三大块开始 -->
-    <div class="buttonBox">
-        <!-- 在线填报类按钮 -->
-      <el-row :gutter="20" v-if="buttonType == 'online'">  
-        <el-col :span="14" :offset="1">
-              <el-row :gutter="20">
-                <el-col :span="6" >
-                  <div >
-                      <el-button  @click="onSubmit" class="checkEmpty checkEmpty1">返回</el-button>
-                  </div>
-                </el-col>
-              </el-row>
-          </el-col>
-        </el-row>  
-        <!-- 非在线填报类按钮 -->
-      <el-row :gutter="20" v-if="buttonType == 'notOnline'">  
-        <el-col :span="14" :offset="1">
-              <el-row :gutter="20">
-                <el-col :span="6" >
-                  <div >
-                      <el-button  @click="onSubmit" class="checkEmpty checkEmpty1">报文下载</el-button>
-                  </div>
-                </el-col>
-                <el-col :span="6" >
-                  <div >
-                      <el-button  @click="onSubmit2" class="checkEmpty checkEmpty2">报送</el-button>
-                  </div>
-                </el-col>
-                <el-col :span="6" >
-                  <div >
-                      <el-button  @click="onSubmit3" class="checkEmpty checkEmpty3">返回编辑</el-button>
-                  </div>
-                </el-col>
-              </el-row>
-          </el-col>
-        </el-row> 
-    </div>
+         <!-- 第三大块开始 -->
+      <div class="buttonBox">
+          <!-- 在线填报类按钮   v-if="buttonType == 'online'" -->
+        <el-row :gutter="20" v-if="buttonType == 'online'">  
+          <el-col :span="14" :offset="1">
+                <el-row :gutter="20">
+                  <el-col :span="6" >
+                    <div >
+                        <el-button  @click="onSubmit" type="primary">
+                          <i class="el-icon-back"></i> 返回
+                        </el-button>  
+                    </div>
+                  </el-col>
+                  <el-col :span="6" >
+                    <div >
+                        <el-button  @click="onSubmit2" >报送</el-button>
+                    </div>
+                  </el-col>
+                </el-row>
+            </el-col>
+          </el-row>  
+          <!-- 非在线填报类按钮 -->
+        <el-row :gutter="20" v-if="buttonType == 'notOnline'">  
+          <el-col :span="14" :offset="1">
+                <el-row :gutter="20">
+                  <el-col :span="6" >
+                    <div >
+                        <el-button  @click="onSubmit" >报文下载</el-button>
+                    </div>
+                  </el-col>
+                  <el-col :span="6" >
+                    <div >
+                        <el-button  @click="onSubmit2" >报送</el-button>
+                    </div>
+                  </el-col>
+                  <el-col :span="6" >
+                    <div >
+                        <el-button  @click="onSubmit3" >返回编辑</el-button>
+                    </div>
+                  </el-col>
+                </el-row>
+            </el-col>
+          </el-row> 
+      </div>
     <!-- 第三大块结束 -->
+    </el-card>
+    
   </div>
 </template>
 
@@ -227,13 +235,13 @@
        },
 
        //    提示框变量
-       titlePrompt: '', // 提示框标题
+       titlePrompt: '报送成功', // 提示框标题
        promprDetail: '您填报的交易报告已报送成功，报文名：CSSC0000000000001‐20181021‐00000004.XML，报送处理结果以回执为准，请下载回执进行查看。' // 提示内容
      }
    },
    methods: {
      onSubmit() {
-       this.$router.push({ path: 'onlineFillManage' })
+       this.$router.push({ path: 'onlineFill' })
        //    console.log('submit!')
      },
      onSubmit2() {
@@ -257,8 +265,8 @@
 
 <style >
 .fileCheck{
-  background: #f5f5f5;
-  padding: 20px;
+  /* background: #f5f5f5;
+  padding: 20px; */
   
 }
 .fileCheck .paddingLeftNone{
@@ -286,7 +294,7 @@
     padding-right: 3px;
 }
 .fileCheck .buttonBox{
-    margin-top: 30px;
+  margin: 35px 0 25px 0;
 }
 .fileCheck .checkEmpty{
   width: 100%;

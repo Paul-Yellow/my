@@ -32,7 +32,7 @@
                                 <el-form-item label='' class='form-item-captcha' prop='captcha'>
                                     <el-input  v-model='updataPwForm.captcha' @keyup.enter.native='handleLogin' class='form-input' placeholder='验证码'></el-input>
                                 </el-form-item>
-                                <img class='login_cacaptcha' src='.././login-captcha.jpg'/>
+                                <img class='login_cacaptcha' src='../../../assets/login/login-captcha.jpg'/>
                             </el-col>
                             <el-col :span="4" class='tip-col'>
                                 <div style='margin-top:0.1em'>点击图片可</div>
@@ -94,14 +94,14 @@ export default {
 
 <style rel='stylesheet/scss' lang='scss'>
 .login-bg {
-  background: url(".././login-bg.jpg");
+  background: url("../../../assets/login/login-bg.jpg");
   background-size: 100% 100%;
   min-height:45vw;
   height: 100vh;
   font-size: 1vw;
 
   .login-bg-left {
-    background: url(".././login-bg-left.jpg");
+    background: url("../../../assets/login/login-bg-left.jpg");
     background-size: 100% 100%;
   }
 

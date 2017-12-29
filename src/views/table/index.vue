@@ -1,6 +1,6 @@
 <template>
   <div class="app-container">
-    <el-table :data="list" v-loading.body="listLoading" element-loading-text="Loading" border fit highlight-current-row>
+    <el-table :data="list.slice((currentPage-1)*pagesize,currentPage*pagesize)" v-loading.body="listLoading" element-loading-text="Loading" border fit highlight-current-row>
       <el-table-column align="center" label='ID' width="95">
         <template slot-scope="scope">
           {{scope.$index}}
@@ -33,6 +33,15 @@
         </template>
       </el-table-column>
     </el-table>
+    <el-pagination
+      @size-change="handleSizeChange"
+      @current-change="handleCurrentChange"
+      :current-page="currentPage"
+      :page-sizes="[10, 20, 30, 40, 50]"
+      :page-size="pagesize"
+      layout="total, sizes, prev, pager, next, jumper"
+      :total="list.length">
+    </el-pagination>
   </div>
 </template>
 
@@ -43,7 +52,11 @@ export default {
   data() {
     return {
       list: null,
-      listLoading: true
+      listLoading: true,
+      // 默认开始页码
+      currentPage: 1,
+      // 每页显示条数
+      pagesize: 20
     }
   },
   filters: {
@@ -57,15 +70,24 @@ export default {
     }
   },
   created() {
-    this.fetchData()
+    var listQuery = { currentPage: this.currentPage, pageSize: this.pageSize }
+    this.fetchData(listQuery)
   },
   methods: {
-    fetchData() {
+    fetchData(listQuery) {
       this.listLoading = true
       getList(this.listQuery).then(response => {
         this.list = response.data.projects
         this.listLoading = false
       })
+    },
+    handleSizeChange(size) {
+      this.pagesize = size
+      // console.log(`每页 ${size} 条`)
+    },
+    handleCurrentChange(currentPage) {
+      this.currentPage = currentPage
+      // console.log(`当前页: ${currentPage}`)
     }
   }
 }

@@ -3,21 +3,6 @@
 [1. 本框架相关文档及工具](http://192.168.1.100:3000)
 [2. ElementUI文档](http://192.168.1.100:8085)
 
-
-## Extra
-如果你想要根据用户角色来动态生成侧边栏和router，你可以使用该分支[permission-control](https://github.com/PanJiaChen/vueAdmin-template/tree/permission-control)
- 
- ## 相关项目
- [vue-element-admin](https://github.com/PanJiaChen/vue-element-admin)
-
-配套教程，如何从零构建后一个完整的后台项目:
- - [系列一(基础篇)](https://juejin.im/post/59097cd7a22b9d0065fb61d2)
- - [系列二(登录权限篇)](https://juejin.im/post/591aa14f570c35006961acac)
- - [系列三 (实战篇)](https://juejin.im/post/593121aa0ce4630057f70d35)
- - [系列四(vueAdmin 一个极简的后台基础模板,专门针对本项目的文章,算作是一篇文档)](https://juejin.im/post/595b4d776fb9a06bbe7dba56)
- - [封装一个vue component](https://segmentfault.com/a/1190000009090836)
-
-
 ## Build Setup
 
 ``` bash

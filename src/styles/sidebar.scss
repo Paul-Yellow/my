@@ -1,7 +1,7 @@
 // 左侧导航宽度和内容偏移度
-$app-sidebar-width:220px;
+$app-sidebar-width:200px;
 // 左侧二级导航宽度
-$app-sidebar-submenu-width:180px;
+$app-sidebar-submenu-width:200px;
 
 #app {
   // 主体区域
@@ -24,6 +24,9 @@ $app-sidebar-submenu-width:180px;
     a {
       display: inline-block;
       width: 100%;
+    }
+    a:active {
+        background-color: red;
     }
     .svg-icon {
       margin-right: 16px;
@@ -91,6 +94,10 @@ $app-sidebar-submenu-width:180px;
           display: inline-block!important;
         }
       }
+
+      // &>.el-menu-item:active{
+      //   background-color: red;
+      // }
     }
   }
   .nest-menu .el-submenu>.el-submenu__title,
@@ -104,4 +111,7 @@ $app-sidebar-submenu-width:180px;
   .el-menu--collapse .el-menu .el-submenu{
     min-width: $app-sidebar-submenu-width !important;
   }
+
+
 }
+

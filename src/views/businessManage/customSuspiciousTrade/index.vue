@@ -1,9 +1,9 @@
 <template>
   <div>
       <el-card>
-          <!-- <div slot="header" class="clearfix">
-            <span>文件公函</span>
-          </div> -->
+          <div slot="header" class="clearfix">
+            <span>自定义可疑交易特征管理</span>
+          </div>
           <el-form :model="form">
             <el-row :gutter="20">
                 <el-col :span="8">
@@ -30,22 +30,21 @@
                 </el-form-item>
             </el-row>
           </el-form> 
-      </el-card>
-      <el-card class="tablewrap">
-        <el-table :data="tableData" style="width: 100%">
+          <el-table :data="tableData" style="width: 100%">
             <el-table-column prop="key" label="序号"></el-table-column>
-            <el-table-column prop="code" label="自定义可疑交易特征代码"></el-table-column>
-            <el-table-column prop="detail" label="自定义可疑交易特征代码描述"></el-table-column>
-            <el-table-column prop="num" label="有此可疑特征的交易报告数量"></el-table-column>
+            <el-table-column prop="code" label="自定义可疑交易特征代码" min-width="120"></el-table-column>
+            <el-table-column prop="detail" label="自定义可疑交易特征代码描述" min-width="150"></el-table-column>
+            <el-table-column prop="num" label="有此可疑特征的交易报告数量" min-width="150"></el-table-column>
             <el-table-column prop="version" label="版本号"></el-table-column>
             <el-table-column prop="date" label="生效日期"></el-table-column>
-            <el-table-column label="操作">
+            <el-table-column label="操作" width="80">
                 <template slot-scope="scope">
-                    <router-link to="customSuspiciousTradeDetail"><el-button type="text" size="small">查看</el-button></router-link>
+                    <router-link to="customSuspiciousTradeDetail"><el-button type="text">查看</el-button></router-link>
                 </template>
             </el-table-column>
-       </el-table>
-         <el-pagination background layout="prev, pager, next" :total="100"></el-pagination>
+         </el-table>
+          <el-pagination @size-change="handleSizeChange" @current-change="handleCurrentChange" :current-page="currentPage" :page-sizes="[100, 200, 300, 400]"
+          :page-size="100" layout="total, sizes, prev, pager, next, jumper" :total="400" background></el-pagination>
       </el-card>
   </div>
 </template>
@@ -54,6 +53,7 @@
 export default {
   data() {
     return {
+      currentPage: 1, // 分页当前页数
       form: {
         name: ''
       },
@@ -80,6 +80,15 @@ export default {
         date: '2017-10-27'
       }]
     }
+  },
+  methods: {
+    // 分页
+    handleSizeChange(val) {
+      console.log(`每页 ${val} 条`)
+    },
+    handleCurrentChange(val) {
+      console.log(`当前页: ${val}`)
+    }
   }
 }
 </script>
@@ -87,8 +96,5 @@ export default {
 <style rel="stylesheet/scss" lang="scss" scoped>
     .btn-row {
         text-align: right;
-    }
-    .tablewrap {
-        margin-top: 20px;
     }
 </style>

@@ -8,7 +8,6 @@
         <p class="text-p" v-for="text in notic.text" :key="text">
           {{ text }}
         </p>
-        <!-- <fileUpload></fileUpload> -->
       </el-row>
       <el-row class="notic-file">
         <span>附件：</span>
@@ -26,9 +25,7 @@
 </template>
 
 <script>
-import fileUpload from '@/components/FileUpload'
 export default {
-  components: { fileUpload },
   data() {
     return {
       notic: {
@@ -70,7 +67,7 @@ export default {
     text-indent: 2em,
   }
   .text-div {
-    height: 50em;
+    height: 30em;
     font-size: 1em;
     color: #333333
   }

@@ -281,8 +281,7 @@ export default {
 
 <style lang="scss">
 .InformationChange {
-  padding: 24px;
-   background-color:  #f0f2f5;
+
 
   .el-collapse {
     border: 1px solid #d9d9d9;

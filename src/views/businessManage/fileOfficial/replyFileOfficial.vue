@@ -5,7 +5,7 @@
               <span class="replytitle">文件公函:</span>
               <el-form label-width="100px">
                 <el-form-item label="回复内容：">
-                  <el-input type="textarea"></el-input>
+                  <el-input type="textarea" v-model="textAreaValue"></el-input>
                 </el-form-item>
                 <el-form-item label="回复附件:">
                   <el-upload class="upload-demo" drag action="https://jsonplaceholder.typicode.com/posts/" multiple>
@@ -28,6 +28,7 @@
 export default {
   data: function() {
     return {
+      textAreaValue: '' // 文本框内容
     }
   }
 }

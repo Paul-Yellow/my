@@ -4,7 +4,7 @@
     <!-- 第一大块开始 -->
     <el-card class="box-card">
       <div slot="header" class="clearfix">
-        <span style="font-weight:600;">手工填报</span>
+        <span>手工填报</span>
       </div>
       <el-form ref="form"    :label-position="labelPosition" label-width="140px">
         <!-- 第一行 -->
@@ -38,7 +38,7 @@
      <!-- 第二大块开始 -->
     <el-card class="box-card"  >
       <div slot="header" class="clearfix">
-        <span style="font-weight:600;">工具填报</span>
+        <span>工具填报</span>
       </div>
       <el-form ref="form"  :label-position="labelPosition" label-width="140px" >
         <!-- 第一行 -->
@@ -77,7 +77,7 @@
     <!-- 第三大块开始 -->
     <el-card class="box-card">
       <div slot="header" class="clearfix">
-        <span style="font-weight:600;">填报工具下载</span>
+        <span>填报工具下载</span>
       </div>
       <el-form ref="form"  :label-position="labelPosition" label-width="140px" >
         <!-- 第一行 -->

@@ -1,90 +1,102 @@
 <template>
   <div class="homewrap">
-       <el-row :gutter="20">
-            <el-col :span="9">
+       <el-row :gutter="16">
+            <el-col :span="10">
                 <el-tabs type="border-card" class="firinline-box">
-                    <el-tab-pane label="在办事项">
-                        <div v-for="o in 3" :key="o" class="text item clearfix">
-                            <div class="clearfix">
-                                <span class="h-listtxt">{{'> 零报告确认提醒:2017年9月10日至今，无报告' + o }}</span>
-                                <span class="tabs-state tab-new">[ new ]</span>
-                            </div>
-                             <div class="tabs-info"><span>反洗钱中心端</span><span>2017年3月10日</span></div>
+                    <el-tab-pane>
+                        <el-badge slot="label" is-dot>
+                            <span>在办事项</span>
+                        </el-badge>
+
+                        <div v-for="o in dealtList" :key="o.id" v-loading.body="listLoading" element-loading-text="Loading" class="text item clearfix">
+                            <router-link :to="{ name: 'detail', params: { id: o.id, title: o.title } }">
+                                <div class="clearfix">
+                                    <span class="h-listtxt">{{ o.title }}</span>
+                                    <span class="tabs-state tab-new">[ {{ o.state }} ]</span>
+                                </div>
+                            </router-link>
+                            <div class="tabs-info"><span>{{ o.from }}</span><span>{{ o.createTime }}</span></div>
                         </div>
                     </el-tab-pane>
-                    <el-tab-pane label="待办提醒">
-                        <div v-for="o in 3" :key="o" class="text item clearfix">
+                    <el-tab-pane>
+                        <el-badge slot="label" is-dot>
+                            <span>待办提醒</span>
+                        </el-badge>
+                        <div v-for="o in remindList" :key="o.id" class="text item clearfix">
+                            <router-link :to="{ name: 'detail', params: { id: o.id, title: o.title } }">
                             <div class="clearfix">
-                                <span class="h-listtxt">{{'> 页面加载已上传未报送的数据包数' + o }}</span>
-                                <span class="tabs-state">[ 未处理 ]</span>
+                                <span class="h-listtxt">{{ o.title }}</span>
+                                <span class="tabs-state">[ {{ o.state }} ]</span>
                             </div>
-                             <div class="tabs-info"><span>反洗钱中心端</span><span>2017年3月10日</span></div>
+                            </router-link>
+                             <div class="tabs-info"><span>{{ o.from }}</span><span>{{ o.createTime }}</span></div>
                         </div>
                     </el-tab-pane>
                     <el-tab-pane label="待阅事项">
-                         <div v-for="o in 3" :key="o" class="text item clearfix">
+
+                         <div v-for="o in readList" :key="o.id" class="text item clearfix">
+                             <router-link :to="{ name: 'detail', params: { id: o.id, title: o.title } }">
                             <div class="clearfix">
-                                <span class="h-listtxt">{{'> 页面加载已上传未报送的数据包数' + o }}</span>
-                                <span class="tabs-state">[ 已处理 ]</span>
+                                <span class="h-listtxt">{{ o.title }}</span>
+                                <span class="tabs-state">[ {{ o.state }} ]</span>
                             </div>
-                             <div class="tabs-info"><span>反洗钱中心端</span><span>2017年3月10日</span></div>
+                             </router-link>
+                             <div class="tabs-info"><span>{{ o.from }}</span><span>{{ o.createTime }}</span></div>
                         </div>
                     </el-tab-pane>
                     <el-tab-pane label="提醒事项">
-                        <div v-for="o in 3" :key="o" class="text item">
+                        <div v-for="o in remindList" :key="o.id" class="text item">
+                            <router-link :to="{ name: 'detail', params: { id: o.id, title: o.title } }">
                             <div class="clearfix">
-                                <span class="h-listtxt">{{'> 页面加载已上传未报送的数据包数' + o }}</span>
-                                <span class="tabs-state">[ 已处理 ]</span>
+                                <span class="h-listtxt">{{ o.title }}</span>
+                                <span class="tabs-state">[ {{ o.state }} ]</span>
                             </div>
-                             <div class="tabs-info"><span>反洗钱中心端</span><span>2017年3月10日</span></div>
+                            </router-link>
+                             <div class="tabs-info"><span>{{ o.from }}</span><span>{{ o.createTime }}</span></div>
                         </div>
                     </el-tab-pane>
                     <div class="cardmorebtn clearfix">
-                        <el-button style="float: right; padding:12px 6px 0" type="text" class="button">更多></el-button>
+                        <router-link to="/detail/index"><el-button style="float: right; padding:12px 6px 0" type="text" class="button">更多></el-button></router-link>
                     </div>
                 </el-tabs>
             </el-col>
-            <el-col :span="9">
+            <el-col :span="10">
                 <el-card class="box-card noticecard firinline-box">
                     <div slot="header" class="header">
                         <span>通知公告</span>
                     </div>
-                    <div v-for="o in 4" :key="o" class="text item h-list">
+                    <div v-for="o in announcementList" :key="o.id" class="text item h-list">
                         <div class="clearfix">
-                            <span class="h-listtxt"> {{'中国反洗监测中心与斯里兰卡金融情报机构签署反洗钱反恐怖荣资金' + o }}</span>
-                            <span class="tabs-state">[11-20]</span>
+                            <router-link :to="{ name: 'detail', params: { id: o.id, title: o.title } }"><span class="h-listtxt"> {{ o.title }}</span></router-link>
+                            <span class="tabs-state">[{{o.createTime}}]</span>
                         </div>
                     </div>
                     <div class="cardmorebtn clearfix">
-                        <el-button style="float: right; padding:12px 6px 0" type="text" class="button">更多></el-button>
+                        <router-link to="/detail/index"><el-button style="float: right; padding:12px 6px 0" type="text" class="button">更多></el-button></router-link>
                     </div>
                 </el-card>
             </el-col>
-            <el-col :span="6">
-                <el-card class="filecard firinline-box">
+            <el-col :span="4">
+                <el-card class="fillcard firinline-box" :body-style="{'padding-top':'10px'}">
                     <div slot="header" class="header">
-                        <span>文件公函</span>
-                        <!-- <el-button style="float: right; padding: 3px 0" type="text">更多</el-button> -->
+                        <span>快速填报入口</span>
                     </div>
-                    <div v-for="o in 4" :key="o" class="text item h-list">
+                    <div v-for="o in fileOfficialList" :key="o.id" class="text item h-list">
                         <div class="clearfix">
-                            <span class="h-listtxt">{{'金融机构反洗钱规定 ' + o }}</span>
-                            <span class="tabs-state">[11-20]</span>
+                            <router-link :to="{ name: 'detail', params: { id: o.id, title: o.title } }"><span class="h-listtxt">{{ o.title }}</span></router-link>
+                            <span class="tabs-state">{{ o.createTime }}</span>
                         </div>
-                    </div>
-                    <div class="cardmorebtn clearfix">
-                        <el-button style="float: right; padding:12px 6px 0" type="text" class="button">更多></el-button>
                     </div>
                 </el-card>
             </el-col>
         </el-row>
         <!-- 第二列 -->
-        <el-row :gutter="20">
-            <el-col :span="5" type="error">
+        <el-row :gutter="16">
+            <el-col :span="4" type="error">
               <el-card class="returncard secinline-box">
                   <div slot="header" class="header clearfix">
                   <span>回执信息统计</span>
-                  <el-button style="float: right; padding: 3px 0; color:#666" type="text">今日新增</el-button>
+                  <el-button style="display:inline-block; float: right; padding: 3px 0;  cursor: default; color:#666" type="text">今日新增</el-button>
                 </div>
                 <div>
                     <div class="return-item clearfix">
@@ -110,28 +122,29 @@
                 </div>
                 </el-card>
             </el-col>
-            <el-col :span="15">
+            <el-col :span="20">
               <el-card class="box-card submitcard secinline-box clearfix">
                 <div slot="header" class="header clearfix">
                   <span>报送量统计</span>
-                  <el-button style="float: right; padding: 3px 0; color:#666;" type="text">近一周数据统计</el-button>
+                  <el-button style="float: right; padding: 3px 0; color:#666;  cursor: default;" type="text">近一周数据统计（单位/条）</el-button>
                 </div>
                 <el-row :gutter="20">
-                     <el-col :span="12" :lg="{span:12}" >
+                     <el-col :span="11" :lg="{span:11}" >
+                        <!-- <div class="chartitle">总计：<span>2200</span>条</div> -->
                         <chart width="100%"></chart>
                      </el-col>
-                     <el-col :span="12"  >
+                     <el-col :span="13"  >
                         <div class="home-listnum">
                         <el-row :gutter="30" class="return-list">
                         <el-col :span="12">
                             <div class="return-item clearfix">
-                                <span class="r-txt"><em></em>大额新增报文</span>
+                                <span class="r-txt"><em class="large"></em>大额新增报文</span>
                                 <span class="r-num">122</span>
                             </div>
                         </el-col>
                         <el-col :span="12">
                             <div class="return-item clearfix">
-                                <span class="r-txt"><em></em>可疑新增报文</span>
+                                <span class="r-txt"><em class="suspicious"></em>可疑新增报文</span>
                                 <span class="r-num">233</span>
                             </div>
                         </el-col>
@@ -139,13 +152,13 @@
                     <el-row :gutter="30" class="return-list">
                         <el-col :span="12">
                             <div class="return-item clearfix">
-                                <span class="r-txt"><em></em>大额系统补正报文</span>
+                                <span class="r-txt"><em class="large"></em>大额系统补正报文</span>
                                 <span class="r-num">0</span>
                             </div>
                         </el-col>
                         <el-col :span="12">
                             <div class="return-item clearfix">
-                                <span class="r-txt"><em></em>可疑系统补正报文</span>
+                                <span class="r-txt"><em class="suspicious"></em>可疑系统补正报文</span>
                                 <span class="r-num">12</span>
                             </div>
                         </el-col>
@@ -153,27 +166,13 @@
                     <el-row :gutter="30" class="return-list">
                         <el-col :span="12">
                             <div class="return-item clearfix">
-                                <span class="r-txt"><em></em>大额主动纠错报文</span>
+                                <span class="r-txt"><em class="large"></em>大额主动纠错报文</span>
                                 <span class="r-num">34</span>
                             </div>
                         </el-col>
                         <el-col :span="12">
                             <div class="return-item clearfix">
-                                <span class="r-txt"><em></em>可疑信息更正</span>
-                                <span class="r-num">178</span>
-                            </div>
-                        </el-col>
-                    </el-row>
-                    <el-row :gutter="30" class="return-list">
-                        <el-col :span="12">
-                            <div class="return-item clearfix">
-                                <span class="r-txt"><em></em>大额删除报文</span>
-                                <span class="r-num">455</span>
-                            </div>
-                        </el-col>
-                        <el-col :span="12">
-                            <div class="return-item clearfix">
-                                <span class="r-txt"><em></em>可疑主动纠错报文</span>
+                                <span class="r-txt"><em class="suspicious"></em>可疑主动纠错报文</span>
                                 <span class="r-num">8</span>
                             </div>
                         </el-col>
@@ -181,13 +180,27 @@
                     <el-row :gutter="30" class="return-list">
                         <el-col :span="12">
                             <div class="return-item clearfix">
-                                <span class="r-txt"><em></em>大额信息更正</span>
+                                <span class="r-txt"><em class="large"></em>大额删除报文</span>
+                                <span class="r-num">455</span>
+                            </div>
+                        </el-col>
+                        <el-col :span="12">
+                            <div class="return-item clearfix">
+                                <span class="r-txt"><em class="correction"></em>人工补正-可疑信息更正</span>
+                                <span class="r-num">178</span>
+                            </div>
+                        </el-col>
+                    </el-row>
+                    <el-row :gutter="30" class="return-list">
+                        <el-col :span="12">
+                            <div class="return-item clearfix">
+                                <span class="r-txt"><em class="correction"></em>人工补正-大额信息更正：</span>
                                 <span class="r-num">34</span>
                             </div>
                         </el-col>
                         <el-col :span="12">
                             <div class="return-item clearfix">
-                                <span class="r-txt"><em></em>信息补充：</span>
+                                <span class="r-txt"><em class="correction"></em>人工补正-信息补充：</span>
                                 <span class="r-num">7</span>
                             </div>
                         </el-col>
@@ -197,47 +210,22 @@
                 </el-row>
                 </el-card>
             </el-col>
-            <el-col :span="4">
-                <el-card class="fillcard secinline-box" :body-style="{ paddingTop: '12px' }">
-                    <div slot="header" class="header">
-                        <span>快速填报入口</span>
-                    </div>
-                    <div>
-                        <router-link to="/dataSubmit/onlineFillManage">
-                            <div class="fillwrap editwrap">
-                                <div class="fillbtn">
-                                    <i class="el-icon-edit"></i>
-                                </div>
-                                <span>在线填报</span>
-                            </div>
-                        </router-link>
-                        <router-link to="/dataSubmit/pageLoading">
-                            <div class="fillwrap refreshwrap">
-                                <div class="fillbtn">
-                                    <i class="el-icon-refresh"></i>
-                                </div>
-                                <span>页面加载</span>
-                            </div>
-                        </router-link>
-                    </div>
-                </el-card>
-            </el-col>
         </el-row>
         <!-- 第三列 -->
-        <el-row :gutter="20">
+        <el-row :gutter="16">
             <el-col :span="6">
-                <el-card class="casecard thirinline-box">
+                 <el-card class="filecard thirinline-box">
                     <div slot="header" class="header">
-                        <span>案例分享</span>
+                        <span>文件公函</span>
                     </div>
-                    <div v-for="o in 4" :key="o" class="text item">
+                    <div v-for="o in caseshareList" :key="o.id" class="text item">
                         <div class="clearfix">
-                            <span class="h-listtxt"> {{'江苏银行反洗钱案例 ' + o }}</span>
-                            <span class="tabs-state">[11-20]</span>
+                            <router-link :to="{ name: 'detail', params: { id: o.id, title: o.title } }"><span class="h-listtxt"> {{ o.title }}</span></router-link>
+                            <span class="tabs-state">[{{ o.createTime }}]</span>
                         </div>
                     </div>
                     <div class="cardmorebtn clearfix">
-                        <el-button style="float: right; padding:12px 6px 0" type="text" class="button">更多></el-button>
+                        <router-link to="/detail/index"><el-button style="float: right; padding:12px 6px 0" type="text" class="button">更多></el-button></router-link>
                     </div>
                 </el-card>
             </el-col>
@@ -247,14 +235,14 @@
                         <span>下载中心</span>
                         <!-- <el-button style="float: right; padding: 3px 0" type="text">更多</el-button> -->
                     </div>
-                    <div v-for="o in 4" :key="o" class="text item">
+                    <div v-for="o in downloadList" :key="o.id" class="text item">
                         <div class="clearfix">
-                            <span class="h-listtxt"> {{'银行业大额可疑交易报告填写模板 ' + o }}</span>
-                            <span class="tabs-state">[11-20]</span>
+                            <router-link :to="{ name: 'detail', params: { id: o.id, title: o.title } }"><span class="h-listtxt"> {{ o.title }}</span></router-link>
+                            <span class="tabs-state">[{{ o.createTime }}]</span>
                         </div>
                     </div>
                     <div class="cardmorebtn clearfix">
-                        <el-button style="float: right; padding:12px 6px 0" type="text" class="button">更多></el-button>
+                        <router-link to="/detail/index"><el-button style="float: right; padding:12px 6px 0" type="text" class="button">更多></el-button></router-link>
                     </div>
                 </el-card>
             </el-col>
@@ -264,14 +252,11 @@
                         <span>常见问题</span>
                         <!-- <el-button style="float: right; padding: 3px 0" type="text">更多</el-button> -->
                     </div>
-                    <div v-for="o in 4" :key="o" class="text item">
-                         <div class="clearfix">
-                            <span class="h-listtxt">  {{'如何修改已提交的可疑交易报告' + o }}</span>
-                            <span class="tabs-state">[11-20]</span>
-                        </div>
+                    <div v-for="o in answerList" :key="o.id" class="text item">
+                        <router-link :to="{ name: 'detail', params: { id: o.id, title: o.title } }"> {{ o.title }}</router-link>
                     </div>
                     <div class="cardmorebtn clearfix">
-                        <el-button style="float: right; padding:12px 6px 0" type="text" class="button">更多></el-button>
+                        <router-link to="/detail/index"><el-button style="float: right; padding:12px 6px 0" type="text" class="button">更多></el-button></router-link>
                     </div>
                 </el-card>
             </el-col>
@@ -281,14 +266,14 @@
                         <span>报送培训</span>
                         <!-- <el-button style="float: right; padding: 3px 0" type="text">更多</el-button> -->
                     </div>
-                    <div v-for="o in 4" :key="o" class="text item">
+                    <div v-for="o in trainList" :key="o.id" class="text item">
                          <div class="clearfix">
-                            <span class="h-listtxt">  {{'报送培训' + o }}</span>
-                            <span class="tabs-state">[11-20]</span>
+                            <router-link :to="{ name: 'detail', params: { id: o.id, title: o.title } }"><span class="h-listtxt">  {{ o.title }}</span></router-link>
+                            <span class="tabs-state">[{{ o.createTime }}]</span>
                         </div>
                     </div>
                     <div class="cardmorebtn clearfix">
-                        <el-button style="float: right; padding:12px 6px 0" type="text" class="button">更多></el-button>
+                        <router-link to="/detail/index"><el-button style="float: right; padding:12px 6px 0" type="text" class="button">更多></el-button></router-link>
                     </div>
                 </el-card>
             </el-col>
@@ -299,12 +284,24 @@
 <script>
 import { mapGetters } from 'vuex'
 import Chart from '@/components/Echars'
+import { getList } from '@/api/dashboard'
 
 export default {
   name: 'dashboard',
   components: { Chart },
   data() {
     return {
+      announcementList: null,
+      fileOfficialList: null,
+      caseshareList: null,
+      downloadList: null,
+      answerList: null,
+      trainList: null,
+      dealtList: null,
+      matterList: null,
+      readList: null,
+      remindList: null,
+      listLoading: true,
       activeName: 'first',
       msgStyle: {
         top: '60px',
@@ -314,11 +311,30 @@ export default {
   },
   computed: {
     ...mapGetters([
-      'name',
+    //   'name',
       'roles'
     ])
   },
+  created() {
+    this.fetchData()
+  },
   methods: {
+    fetchData() {
+      this.listLoading = true
+      getList(this.listQuery).then(response => {
+        this.announcementList = response.data.announcementList
+        this.fileOfficialList = response.data.fileOfficialList
+        this.caseshareList = response.data.caseshareList
+        this.downloadList = response.data.downloadList
+        this.answerList = response.data.answerList
+        this.trainList = response.data.trainList
+        this.matterList = response.data.matterList
+        this.dealtList = response.data.dealtList
+        this.remindList = response.data.remindList
+        this.readList = response.data.readList
+        this.listLoading = false
+      })
+    }
   },
   mounted: function() {
     // this.open()
@@ -328,7 +344,10 @@ export default {
 
 <style rel="stylesheet/scss" lang="scss">
 .homewrap {
-  //  padding-top: 15px;
+  .el-badge__content.is-fixed {
+      top: 10px;
+      right: 0;
+  }
   .firinline-box {
       height: 240px;
   }
@@ -336,16 +355,22 @@ export default {
       height: 262px;
       margin-top:20px;
   }
+//   .chartitle {  // 图表标题
+//     //text-align: right;
+//     font-size: 14px;
+//     //margin-bottom: 6px;
+//   }
   .thirinline-box {
       margin-top:20px;
-      height: 240px;
+      height: 200px;
   }
   .el-card__header {
       padding-top:10px;
       padding-bottom:10px;
   }
   .el-card__header .header > span {
-    padding-left:10px;
+    margin-left: -6px;
+    padding-left:6px;
     border-left-width: 4px;
     border-left-style: solid;
   }
@@ -419,6 +444,9 @@ export default {
     &:first-child {
         padding-top:0;
     }
+    &:hover {
+        color: #cc2626;
+    }
   }
   .el-tabs__nav {
       width:100%;
@@ -440,14 +468,14 @@ export default {
     }
   }
   .fillwrap {
-    padding: 8px 0;
+    text-align: center;
     border: 1px solid #e5e5e5;
     border-radius: 4px;
     -webkit-border-radius: 4px;
     -moz-border-radius: 4px;
     -o-border-radius: 4px;
     -ms-border-radius: 4px;
-    text-align: center;
+    padding: 0.4em 0;
     .fillbtn {
         width: 2.8em;
         height: 2.8em;
@@ -469,12 +497,12 @@ export default {
     }
   }
   .editwrap .fillbtn {
-    background-color:#b5d955;
+    background-color:#83a623;
   }
   .refreshwrap {
     margin-top:10px;
     .fillbtn {
-      background-color:#fcc42f;
+      background-color:#d79d00;
     }
   }
   .return-item {
@@ -511,7 +539,24 @@ export default {
       color:#999;
       &:hover {
           color:#3699ff;
+          cursor: pointer;
       }
+  }
+  .home-listnum .return-item em{
+    border-radius: 2px;
+    -webkit-border-radius: 2px;
+    -moz-border-radius: 2px;
+    -o-border-radius: 2px;
+    -ms-border-radius: 2px;
+  }
+  .home-listnum .return-item em.large {
+      background-color:#88abda;
+  }
+  .home-listnum .return-item em.suspicious {
+      background-color:#8f82bc;
+  }
+  .home-listnum .return-item em.correction {
+      background-color:#57c0bb;
   }
 }
 </style>

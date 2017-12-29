@@ -1,8 +1,14 @@
 <template>
   <div class="zeroReportConfirm">
     <!-- <div>爱我中华</div> -->
-    <!-- 第一大块开始 -->
+    
     <el-card class="box-card">
+      <div slot="header" class="clearfix">
+        <span >零报告确认</span>
+      </div>
+
+      <!-- 第一大块开始 -->
+      <div>
       <el-form ref="form" :model="sizeForm"  >
         
         <!-- 第一行 -->
@@ -38,9 +44,9 @@
           <el-col :span="8" >
             <el-form-item >
               <el-row :gutter="20">
-                <el-col :span="8" :offset="3">
+                <el-col :span="8" :offset="1">
                   <div class="grid-content bg-purple">
-                      <el-button  @click="onCheck" class="checkEmpty checkEmpty1">查询</el-button>
+                      <el-button  @click="onCheck" >查询</el-button>
                   </div>
                 </el-col>
               </el-row>
@@ -48,22 +54,25 @@
           </el-col>
         </el-row>
       </el-form>
-    </el-card>
+    </div>
     <!-- 第一大块结束   -->
 
     <!-- 第二大块开始     -->
-    <el-card class="box-card  secondBox">
-        <el-table :data="tableData" style="width: 100%">
+    <div class="box-card  secondBox">
+        <el-table :data="tableData" style="width: 100%" header-cell-class-name="el-table-hearder">
           <!-- 第一列 -->
           <el-table-column label="序号"  >
             <template slot-scope="scope">
-              <span>{{ scope.row.orderNumber }}</span>
+              <span>{{ scope.$index+1 }}</span>
             </template>
           </el-table-column>
           <!-- 第二列 -->
           <el-table-column label="零报告周期"  >
             <template slot-scope="scope">
+              <el-tooltip placement="top-start" effect="light">
+                <div slot="content">{{ scope.row.time }}</div>
                 <span>{{ scope.row.time }}</span>
+              </el-tooltip>  
             </template>
           </el-table-column>
           <!-- 第三列 -->
@@ -89,19 +98,20 @@
           </el-table-column>
 
           <!-- 最后一列 -->
-          <el-table-column label="操作">
+          <el-table-column label="操作" min-width="80">
             <template slot-scope="scope">
-              <span v-if="scope.row.check" style="color:#409EFF;cursor: pointer;" @click="dialogFormVisible = true">查看</span>
-              <span v-if="!scope.row.check" style="color:#409EFF;cursor: pointer;" @click="dialogTableVisible = true">进行确认</span>
+              <span v-if="scope.row.confirmState == '已确认'" style="color:#409EFF;cursor: pointer;" @click="dialogTableVisible = true">查看</span>
+              <span v-if="scope.row.confirmState != '已确认'" style="color:#409EFF;cursor: pointer;" @click="dialogFormVisible = true">进行确认</span>
             </template>
           </el-table-column>
         </el-table>
         <!-- 分页 -->
         <p style="textAlign:right">
           <el-pagination @size-change="handleSizeChange"  @current-change="handleCurrentChange" background
-            :current-page.sync="currentPage3" :page-size="10"  layout="prev, pager, next, jumper" :total="totalNumber">
+            :current-page.sync="currentPage" :page-size="10"  :page-sizes="[10, 20, 30, 40]" layout="total, sizes, prev, pager, next, jumper" :total="totalNumber">
           </el-pagination>
         </p>
+      </div>
     </el-card>
     <!-- 第二大块结束 -->
 
@@ -125,10 +135,11 @@
         <el-form-item label="" :label-width="formLabelWidth">
           <el-row>
             <el-col :span="5" style="text-align: right;"><div >零报告情况原因 :</div></el-col>
-            <el-col :span="17" :offset="2"><el-select v-model="form.reason" placeholder="请选择">
-              <el-option  v-for="item in options2" :key="item.value" :label="item.label" :value="item.value">
-              </el-option>
-            </el-select>
+            <el-col :span="17" :offset="2">
+              <el-select v-model="form.reason" placeholder="请选择">
+                <el-option  v-for="item in options2" :key="item.value" :label="item.label" :value="item.value">
+                </el-option>
+              </el-select>
           </el-col>
           </el-row>
         </el-form-item>
@@ -143,8 +154,8 @@
         </el-form-item>
       </el-form>
       <div slot="footer" class="dialog-footer">
-        <el-button @click="dialogFormVisible = false" class="checkEmpty checkEmpty1">取 消</el-button>
-        <el-button type="primary" @click="handConfirm" class="checkEmpty checkEmpty2">确 定</el-button>
+        <el-button @click="dialogFormVisible = false" >取 消</el-button>
+        <el-button type="primary" @click="handConfirm" >确 定</el-button>
       </div>
     </el-dialog>
   <!-- 零报告确认弹窗1结束 -->
@@ -188,7 +199,9 @@
           </el-form-item>
         </el-form>
         <div slot="footer" class="dialog-footer">
-          <el-button @click="dialogTableVisible = false" class="checkEmpty checkEmpty1">返 回</el-button>
+          <el-button @click="dialogTableVisible = false" type="primary">
+            <i class="el-icon-back"></i> 返回
+          </el-button>
         </div>
       </el-dialog>
   <!-- 零报告确认弹窗2结束 -->
@@ -196,6 +209,7 @@
 </template>
 
 <script>
+import { zeroReportConform } from '@/api/dataSubmitAjax'
 import store from '../../../store/index'
 export default {
   store,
@@ -219,23 +233,25 @@ export default {
       // 第一大块变量结束
 
       // 第二大块变量开始
-      tableData: [{
-        orderNumber: '1', // 序号
-        time: '2017-09-30至2017-10-30', // 零报告周期
-        data: '2017-10-31', // 零报告通知日期
-        confirmState: '已确认', // 确认状态
-        reason: '本机构无需要报送的大额交易和可疑交易报告', // 零报告原因
-        check: true // 操作列显示查看
-      }, {
-        orderNumber: '2', // 序号
-        time: '2017-10-31至2017-11-30', // 零报告周期
-        data: '2017-12-01', // 零报告通知日期
-        confirmState: '待确认', // 确认状态
-        reason: '', // 零报告原因
-        check: false
-      }],
-      currentPage3: 1, // 分页
+      // tableData: [{
+      //   orderNumber: '1', // 序号
+      //   time: '2017-09-30至2017-10-30', // 零报告周期
+      //   data: '2017-10-31', // 零报告通知日期
+      //   confirmState: '已确认', // 确认状态
+      //   reason: '本机构无需要报送的大额交易和可疑交易报告', // 零报告原因
+      //   check: true // 操作列显示查看
+      // }, {
+      //   orderNumber: '2', // 序号
+      //   time: '2017-10-31至2017-11-30', // 零报告周期
+      //   data: '2017-12-01', // 零报告通知日期
+      //   confirmState: '待确认', // 确认状态
+      //   reason: '', // 零报告原因
+      //   check: false
+      // }],
+      tableData: [],
+      currentPage: 1, // 分页
       totalNumber: 1, // 列表数量
+      eachPageNumber: '', // 每页条数
 
       // 弹窗1变量
       dialogFormVisible: false,
@@ -289,7 +305,19 @@ export default {
     },
     handleCurrentChange(val) {
       console.log(`当前页: ${val}`)
+    },
+    // 发送ajax 请求获取数据
+    getAjaxData() {
+      this.listLoading = true
+      zeroReportConform(this.listQuery).then(response => {
+        // console.log(response.data.projects)
+        this.tableData = response.data.projects
+        this.listLoading = false
+      })
     }
+  },
+  created() {
+    this.getAjaxData()
   },
   //  初始化列表的页数，每十项一页
   mounted: function() {
@@ -306,8 +334,8 @@ export default {
 </script>
 <style >
 .zeroReportConfirm{
-  background: #f5f5f5;
-  padding: 20px;
+  /* background: #f5f5f5;
+  padding: 20px; */
 }
 .zeroReportConfirm .paddingLeftNone{
   padding-left: 0px !important;
@@ -324,23 +352,6 @@ export default {
   line-height: 28px;
   text-align: left;
   color: #606266;
-}
-.zeroReportConfirm .el-date-editor--daterange.el-input__inner{
-    width: 245px;
-}
-.zeroReportConfirm .el-range-editor.el-input__inner {
-    padding-right: 3px;
-}
-.zeroReportConfirm .chooseTime .el-col-10{
-  padding-left: 2px !important;
-}
-.zeroReportConfirm .chooseTime .el-date-editor .el-range-input {
-    width: 80px;
-}
-.zeroReportConfirm .chooseTime  .el-date-editor .el-range-separator {
-    padding: 0 5px;
-    width: 24px;
-
 }  
 .zeroReportConfirm .checkEmpty{
   width: 100px;
@@ -355,7 +366,7 @@ export default {
 }
       /* 第一大块结束 */
 .zeroReportConfirm  .secondBox{
-  margin-top: 20px; 
+  /* margin-top: 20px;  */
 }
 .zeroReportConfirm .secondBox .el-table th>.cell{
   text-align: center;

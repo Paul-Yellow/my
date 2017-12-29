@@ -1,5 +1,8 @@
 <template>
     <el-card>
+      <div slot="header" class="clearfix User-title">
+        <span>自定义可疑交易特征导入</span> 
+      </div>
       <el-form  ref="form" :model="form" label-width="100px">
         <el-form-item label="选择文件:">
             <el-upload
@@ -17,11 +20,11 @@
         </el-form-item>
         <el-form-item label="生效日期：">
             
-            <el-date-picker type="date" placeholder="选择日期"></el-date-picker>
+            <el-date-picker type="date" v-model="value" placeholder="选择日期"></el-date-picker>
         </el-form-item>
         <el-form-item>
             <router-link to="customSuspiciousTrade"><el-button type="primary">导入</el-button></router-link>
-            <el-button>取消</el-button>
+            <router-link to="customSuspiciousTrade"><el-button>取消</el-button></router-link>
         </el-form-item>
       </el-form>
   </el-card>
@@ -33,7 +36,8 @@ export default {
     return {
       form: {
         name: ''
-      }
+      },
+      value: ''
     }
   }
 }
@@ -44,4 +48,7 @@ export default {
         width: 60%;
         margin: 0 auto;
     }
+    // .el-upload {
+    //     width: 100%;
+    // }
 </style>

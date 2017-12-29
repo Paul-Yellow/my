@@ -1,6 +1,9 @@
 <template>
   <div>
     <el-card>
+       <div slot="header" class="clearfix">
+            <span>自定义可疑交易特征管理</span>
+        </div>
     <el-form>
       <el-row>
         <el-col :span="12">
@@ -19,9 +22,11 @@
               <span>非法集资</span>
           </el-form-item>
         </el-col>
+        <el-col :span="24">
+          <DividerHorizontal/>
+        </el-col>
       </el-row>
-      <el-card class="tablefix">
-          <div slot="header" class="clearfix">
+          <div class="cheader">
             <span>涉罪类型</span>
           </div>
           <el-table :data="tableData" style="width: 100%">
@@ -29,9 +34,7 @@
             <el-table-column prop="code" label="涉罪类型代码" width="180"></el-table-column>
             <el-table-column prop="detail" label="涉罪类型代码描述"></el-table-column>
         </el-table>
-      </el-card>
-      <el-card class="tablefix">
-          <div slot="header" class="clearfix">
+          <div class="cheader">
             <span>监测标准</span>
           </div>
           <el-table :data="tableData" style="width: 100%">
@@ -39,17 +42,14 @@
             <el-table-column prop="code" label="监测标准代码" width="180"></el-table-column>
             <el-table-column prop="detail" label="监测标准描述"></el-table-column>
         </el-table>
-      </el-card>
-      <el-card class="tablefix">
-          <div slot="header" class="clearfix">
-            <span>可疑交易特征相关技术指标</span>
+          <div class="cheader">
+            可疑交易特征相关技术指标
           </div>
           <el-table :data="tableData" style="width: 100%">
             <el-table-column prop="key" label="序号" width="180"></el-table-column>
             <el-table-column prop="code" label="技术指标代码" width="180"></el-table-column>
             <el-table-column prop="detail" label="技术指标描述"></el-table-column>
         </el-table>
-      </el-card>
       <el-row>
         <el-col :span="12">
           <el-form-item label="可疑交易特征产生方法:">
@@ -63,20 +63,25 @@
           <el-form-item label="其他说明：">
               <span></span>
           </el-form-item>
-          <el-form-item label="生效日期：">
+          <el-form-item v-model="value" label="生效日期：">
               <span>2017-10-26</span>
           </el-form-item>
+        </el-col>
+        <el-col :span="24">
+          <DividerHorizontal/>
         </el-col>
       </el-row>
     </el-form> 
     <div class="btnbox">
-      <router-link to="customSuspiciousTrade"><el-button type="primary">返回</el-button></router-link>
+      <router-link to="customSuspiciousTrade"><el-button type="primary"><i class="el-icon-back"></i> 返回</el-button></router-link>
     </div> 
   </el-card>
   </div>
 </template>
 
 <script>
+import DividerHorizontal from '@/views/layout/components/DividerHorizontal'
+
 export default {
   data() {
     return {
@@ -92,8 +97,12 @@ export default {
         key: '3',
         code: '0609',
         detail: '涉嫌集资诈骗的可疑交易行为'
-      }]
+      }],
+      value: ''
     }
+  },
+  components: {
+    DividerHorizontal
   }
 }
 </script>
@@ -102,11 +111,12 @@ export default {
     .btnbox {
       text-align: center;
     }
-    .el-row {
-      width: 80%;
-      margin:0 auto;
-    } 
-    .tablefix {
-      margin-bottom: 20px;
+    .cheader {
+      font-weight:500;
+      font-size: 16px;
+      margin-bottom:16px;
+    }
+    .el-table {
+      margin-bottom:32px;
     }
 </style>

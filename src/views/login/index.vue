@@ -29,7 +29,7 @@
                                     <el-form-item label='' class='form-item-captcha' prop='captcha'>
                                         <el-input  v-model='loginForm.captcha' @keyup.enter.native='handleLogin' class='form-input' placeholder='验证码'></el-input>
                                     </el-form-item>
-                                    <img class='login_cacaptcha' src='./login-captcha.jpg'/>
+                                    <img class='login_cacaptcha' src='../../assets/login/login-captcha.jpg'/>
                                 </el-col>
                                 <el-col :span="5" class='tip-col'>
                                     <div style='margin-top:0.1em'>点击图片可</div>
@@ -145,14 +145,14 @@ export default {
 
 <style rel='stylesheet/scss' lang='scss'>
 .login-bg {
-  background: url("./login-bg.jpg");
+  background: url("../../assets/login/login-bg.jpg");
   background-size: 100% 100%;
   height: 100vh;
   min-height:45vw;
   font-size: 1vw;
 
   .login-bg-left {
-    background: url("./login-bg-left.jpg");
+    background: url("../../assets/login/login-bg-left.jpg");
     background-size: 100% 100%;
   }
 
@@ -233,9 +233,9 @@ export default {
     background: rgb(25, 187, 200);
     border-color: rgb(25, 187, 200);
     color: #fff;
-    font-size: 0.9em;
+    font-size: 1.8em;
     box-shadow: 0em 0.1em 0.25em rgb(25, 187, 200);
-    height: 100%;
+    // height: 6em;
   }
 
   .btn-registerQuer {
@@ -243,9 +243,9 @@ export default {
     background: rgb(45, 140, 226);
     border-color: rgb(45, 140, 226);
     color: #fff;
-    font-size: 0.9em;
+    font-size: 1.8em;
     box-shadow: 0em 0.1em 0.25em rgb(45, 140, 226);
-    height: 100%;
+    // height: 6em;
   }
   .login_cacaptcha {
     float: right;

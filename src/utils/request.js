@@ -18,7 +18,7 @@ service.interceptors.request.use(config => {
 }, error => {
   // Do something with request error
   console.log(error) // for debug
-  Promise.reject(error)
+  Promise.reject(error).catch()
 })
 
 // respone拦截器
@@ -32,7 +32,8 @@ service.interceptors.response.use(
       Message({
         message: res.data,
         type: 'error',
-        duration: 5 * 1000
+        duration: 5 * 1000,
+        showClose: true
       })
 
       // 50008:非法的token; 50012:其他客户端登录了;  50014:Token 过期了;
@@ -45,9 +46,9 @@ service.interceptors.response.use(
           store.dispatch('FedLogOut').then(() => {
             location.reload()// 为了重新实例化vue-router对象 避免bug
           })
-        })
+        }).catch()
       }
-      return Promise.reject('error')
+      return Promise.reject('error').catch()
     } else {
       return response.data
     }
@@ -57,9 +58,10 @@ service.interceptors.response.use(
     Message({
       message: error.message,
       type: 'error',
-      duration: 5 * 1000
+      duration: 5 * 1000,
+      showClose: true
     })
-    return Promise.reject(error)
+    return Promise.reject(error).catch()
   }
 )
 

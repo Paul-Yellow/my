@@ -181,7 +181,7 @@
                                       </el-form-item>
                                   </el-col>
                                   <el-col :span='4' style="text-align:center">
-                                    <el-button class='btn-openfile1'>浏览</el-button>
+                                    <el-button class='btn-openfile'>浏览</el-button>
                                   </el-col>
                                   <el-col :span='7' class="table-col">
                                     <el-form-item label='' prop='otherWord'>
@@ -189,7 +189,7 @@
                                       </el-form-item>
                                   </el-col>
                                   <el-col :span='4' style="text-align:center">
-                                    <el-button class='btn-openfile2'>浏览</el-button>
+                                    <el-button class='btn-openfile'>浏览</el-button>
                                   </el-col>
                             </div>
                         </fieldset>
@@ -342,14 +342,14 @@ export default {
 
 <style rel='stylesheet/scss' lang='scss'>
 .register-style {
-  background: url(".././login-bg.jpg");
+  background: url("../../../assets/login/login-bg.jpg");
   background-size: 100% 100%;
   height: 100vh;
   min-height:45vw;
   font-size: 1vw;
 
   .login-bg-left {
-    background: url(".././login-bg-left.jpg");
+    background: url("../../../assets/login/login-bg-left.jpg");
     background-size: 100% 100%;
   }
 
@@ -423,6 +423,7 @@ export default {
     border-color: rgb(223, 125, 54);
     color: #fff;
     font-size: 0.8em;
+    height: 2em;
     box-shadow: 0em 0.1em 0.25em rgb(223, 125, 54);
   }
 
@@ -431,6 +432,7 @@ export default {
     background: rgb(53, 117, 223);
     border-color: rgb(53, 117, 223);
     color: #fff;
+    height: 2em;
     font-size: 0.8em;
     box-shadow: 0em 0.1em 0.25em rgb(53, 117, 223);
   }
@@ -453,21 +455,13 @@ export default {
     text-align: left;
   }
 
-  .btn-openfile1 {
+  .btn-openfile {
     width: 90%;
     background: rgb(52, 190, 190);
     border-color: rgb(52, 190, 190);
     color: #fff;
     font-size: 0.8em;
-    box-shadow: 0em 0.1em 0.25em rgb(52, 190, 190);
-  }
-
-  .btn-openfile2 {
-    width: 90%;
-    background: rgb(52, 190, 190);
-    border-color: rgb(52, 190, 190);
-    color: #fff;
-    font-size: 0.8em;
+    height: 2.2em;
     box-shadow: 0em 0.1em 0.25em rgb(52, 190, 190);
   }
 
@@ -476,7 +470,7 @@ export default {
   }
 
   .form-label {
-    font-size: 0.8em;
+    font-size: 1.6em;
     color: #6e6e6e;
   }
 
@@ -514,17 +508,17 @@ export default {
     line-height:0.5em
   }
   .el-input {
-    font-size: 0.5em;
+    font-size: 1.5em;
   }
   .el-cascader {
-    font-size: 0.5em;
+    font-size: 1.5em;
     line-height: 2em;
   }
   .el-form-item__error {
-    font-size: 0.6em;
+    font-size: 1.2em;
   }
   .el-textarea__inner {
-    height: 2em;
+    height: 6em;
   }
 }
 </style>
